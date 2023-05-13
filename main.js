@@ -4,25 +4,26 @@
 let choices = ["rock", "paper", "scissors"],
     playerChoice,
     computerChoice,
-    randomNum
+    randomNum,
+    tiebreaker
   
 let playerScore = 0,
     computerScore = 0
 
-// calculate computer's move
+// Calculate computer's move
 function getComputerChoice() {
   randomNum = Math.floor(Math.random() * 3)
   return choices[randomNum]
 }
 
-// play a round and display results
+// Play a round and display results
 function playRound(playerChoice, computerChoice) {
   playerChoice = prompt("Choose rock, paper, or scissors.").toLowerCase()
   computerChoice = getComputerChoice().toLowerCase()
 
-  console.log(`Player: ${playerChoice}`)
-  console.log(`Computer: ${computerChoice}`)
-
+  console.log(`Player: ${playerChoice} | Computer: ${computerChoice}`)
+  
+  // Compare choices and adjust the score accordingly
   if (playerChoice == computerChoice) {
     console.log("It's a tie!")
   } else if ((playerChoice == "rock" && computerChoice == "scissors") || 
@@ -36,15 +37,36 @@ function playRound(playerChoice, computerChoice) {
   }
 }
 
+// Play a game of 5 rounds while keeping score
 function playGame(playerChoice, computerChoice) {
   for (let round = 1; round <= 5; round++) {
-    console.log(`Round ${round.toString()} - Scores:`)
-    console.log(`Player: ${playerScore}, Computer: ${computerScore}`)
-
+    console.log(`Round ${round.toString()}`)
+    
     playRound(playerChoice, computerChoice)
+
+    console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`)
     console.log("\n")
+
+    // If there is a tie after the last round, enter tiebreaker state
+    if (round == 5 && (playerScore == computerScore)) {
+      tiebreaker = true
+      
+      // Continue the tiebreaker until someone wins
+      while (tiebreaker) {
+        console.log("Tiebreaker - Next score wins!")
+        playRound(playerChoice, computerChoice)
+        
+        console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`)
+        console.log("\n")
+        if (playerScore == computerScore) {
+          continue
+        }
+        break
+      }
+    }
   }
 
+  // Display final scores and declare a winner
   console.log("Final scores:")
   console.log(`Player: ${playerScore}, Computer: ${computerScore}`)
   if (playerScore > computerScore) {
@@ -52,6 +74,8 @@ function playGame(playerChoice, computerChoice) {
   } else {
     console.log("Aw man, you lost... better luck next time!")
   }
+  console.log("\n")
 }
 
 playGame(playerChoice, computerChoice)
+console.log("Thanks for playing :)")
