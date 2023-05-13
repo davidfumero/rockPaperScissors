@@ -2,9 +2,12 @@
  
 // Get user input
 let choices = ["rock", "paper", "scissors"],
-    playerChoice = prompt("Choose rock, paper, or scissors."),
+    playerChoice,
     computerChoice,
     randomNum
+  
+let playerScore = 0,
+    computerScore = 0
 
 // calculate computer's move
 function getComputerChoice() {
@@ -12,11 +15,11 @@ function getComputerChoice() {
   return choices[randomNum]
 }
 
-playerChoice = playerChoice.toLowerCase()
-computerChoice = getComputerChoice().toLowerCase()
-
 // play a round and display results
 function playRound(playerChoice, computerChoice) {
+  playerChoice = prompt("Choose rock, paper, or scissors.").toLowerCase()
+  computerChoice = getComputerChoice().toLowerCase()
+
   console.log(`Player: ${playerChoice}`)
   console.log(`Computer: ${computerChoice}`)
 
@@ -25,10 +28,30 @@ function playRound(playerChoice, computerChoice) {
   } else if ((playerChoice == "rock" && computerChoice == "scissors") || 
              (playerChoice == "paper" && computerChoice == "rock") ||
              (playerChoice == "scissors" && computerChoice == "paper")) {
-    console.log("You win!")
+    playerScore++
+    console.log("You won the round!")
   } else {
-    console.log("You lose!")
+    computerScore++
+    console.log("You lost the round!")
   }
 }
 
-playRound(playerChoice, computerChoice)
+function playGame(playerChoice, computerChoice) {
+  for (let round = 1; round <= 5; round++) {
+    console.log(`Round ${round.toString()} - Scores:`)
+    console.log(`Player: ${playerScore}, Computer: ${computerScore}`)
+
+    playRound(playerChoice, computerChoice)
+    console.log("\n")
+  }
+
+  console.log("Final scores:")
+  console.log(`Player: ${playerScore}, Computer: ${computerScore}`)
+  if (playerScore > computerScore) {
+    console.log("Congratulations! You're the winner!!!")
+  } else {
+    console.log("Aw man, you lost... better luck next time!")
+  }
+}
+
+playGame(playerChoice, computerChoice, playerScore, computerScore)
