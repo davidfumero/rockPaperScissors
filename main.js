@@ -1,12 +1,20 @@
 // Rock paper scissors game played through the console
- 
-// Get user input
 let choices = ["rock", "paper", "scissors"],
     playerChoice,
     computerChoice,
     randomNum,
-    tiebreaker
-  
+    tiebreaker,
+    welcomeMsg
+
+welcomeMsg = `Welcome to Rock Paper Scissors!
+The game will last 5 rounds, there will be extra 
+rounds if the game were to end in a tie. Input your
+choice when prompted and see if you beat the computer
+Good luck!`
+
+console.log(welcomeMsg)
+console.log("\n")
+
 let playerScore = 0,
     computerScore = 0
 
@@ -72,7 +80,7 @@ function playGame(playerChoice, computerChoice) {
   if (playerScore > computerScore) {
     console.log("Congratulations! You're the winner!!!")
   } else {
-    console.log("Aw man, you lost... better luck next time!")
+    console.log("Aw man, you lost... better luck next time.")
   }
   console.log("\n")
 }
