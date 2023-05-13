@@ -54,4 +54,4 @@ function playGame(playerChoice, computerChoice) {
   }
 }
 
-playGame(playerChoice, computerChoice, playerScore, computerScore)
+playGame(playerChoice, computerChoice)
