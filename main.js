@@ -68,19 +68,22 @@ function playRound(playerChoice) {
 
 // Play a game of 5 rounds while keeping score
 function playGame() {
-  for (let round = 1; round <= 5; round++) {
+  for (let round = 1; round <= 100; round++) {
     console.log(`Round ${round.toString()}`)
     
-    playerChoice = playRound(playerChoice)
-    if (playerChoice == null) {
-      return
-    }
+    // playerChoice = playRound(playerChoice)
+    // if (playerChoice == null) {
+    //   return
+    // }
+
+    playerChoice = document.querySelector("button");
+    playerChoice.addEventListener("click", playRound(playerChoice))
 
     console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`)
     console.log("\n")
 
     // If there is a tie after the last round, enter tiebreaker state
-    if (round == 5 && (playerScore == computerScore)) {
+    if (round == 100 && (playerScore == computerScore)) {
       tiebreaker = true
       
       // Continue the tiebreaker until someone wins
