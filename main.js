@@ -39,13 +39,13 @@ function getComputerChoice() {
 
 // Play a round and display results
 function playRound(playerChoice) {
-  input = prompt("Choose rock, paper, or scissors.")
+  // input = prompt("Choose rock, paper, or scissors.")
 
-  if (input == null) {
-    return null
-  }
+  // if (input == null) {
+  //   return null
+  // }
 
-  playerChoice = validateInput(input).toLowerCase()
+  // validateInput(playerChoice).toLowerCase()
 
   computerChoice = getComputerChoice().toLowerCase()
 
@@ -68,7 +68,7 @@ function playRound(playerChoice) {
 
 // Play a game of 5 rounds while keeping score
 function playGame() {
-  for (let round = 1; round <= 100; round++) {
+  for (let round = 1; round <= 5; round++) {
     console.log(`Round ${round.toString()}`)
     
     // playerChoice = playRound(playerChoice)
@@ -76,14 +76,15 @@ function playGame() {
     //   return
     // }
 
-    playerChoice = document.querySelector("button");
-    playerChoice.addEventListener("click", playRound(playerChoice))
+    
+
+    // playRound(playerChoice)
 
     console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`)
     console.log("\n")
 
     // If there is a tie after the last round, enter tiebreaker state
-    if (round == 100 && (playerScore == computerScore)) {
+    if (round == 5 && (playerScore == computerScore)) {
       tiebreaker = true
       
       // Continue the tiebreaker until someone wins
@@ -112,5 +113,13 @@ function playGame() {
   console.log("\n")
 }
 
-playGame()
+let buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    playerChoice = button.textContent
+    playRound(playerChoice)
+  })
+})
+
+// playGame()
 console.log("Thanks for playing :)")
