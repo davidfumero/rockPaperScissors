@@ -17,7 +17,8 @@ console.log(welcomeMsg);
 console.log("\n");
 
 let playerScore = 0,
-    computerScore = 0;
+    computerScore = 0
+    round = 0;
 
 // Validate the user's input
 function validateInput(input) {
@@ -38,14 +39,12 @@ function getComputerChoice() {
 };
 
 // Play a round and display results
-function playRound(playerChoice) {
-  // input = prompt("Choose rock, paper, or scissors.")
+function playRound() {
 
-  // if (input == null) {
-  //   return null
-  // }
+  console.log(`Round ${round.toString()}`);
 
-  // validateInput(playerChoice).toLowerCase()
+  console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`);
+  console.log("\n");
 
   computerChoice = getComputerChoice().toLowerCase();
 
@@ -63,61 +62,59 @@ function playRound(playerChoice) {
     computerScore++;
     console.log("You lost the round!");
   };
-  return playerChoice;
 };
 
 // Play a game of 5 rounds while keeping score
 function playGame() {
   for (let round = 1; round <= 5; round++) {
-    console.log(`Round ${round.toString()}`);
-    
-    // playerChoice = playRound(playerChoice)
-    // if (playerChoice == null) {
-    //   return
-    // }
-
     
 
-    // playRound(playerChoice)
-
-    console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`);
-    console.log("\n");
-
-    // If there is a tie after the last round, enter tiebreaker state
-    if (round == 5 && (playerScore == computerScore)) {
-      tiebreaker = true;
-      
-      // Continue the tiebreaker until someone wins
-      while (tiebreaker) {
-        console.log("Tiebreaker - Next score wins!");
-        playRound(playerChoice);
-        
-        console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`);
-        console.log("\n");
-        if (playerScore == computerScore) {
-          continue;
-        };
-        break;
-      };
-    };
+    
+    
   };
 
+  
+};
+
+function declareWinner() {
   // Display final scores and declare a winner
   console.log("Final scores:");
   console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
-  if (playerScore > computerScore) {
+
+  // If there is a tie after the last round, enter tiebreaker state
+  if (playerScore == computerScore) {
+    tiebreaker = true;
+      
+    // Continue the tiebreaker until someone wins
+    // while (tiebreaker) {
+    //   console.log("Tiebreaker - Next score wins!");
+    //   playRound(playerChoice);
+        
+    //   console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`);
+    //   console.log("\n");
+    //   if (playerScore == computerScore) {
+    //     continue;
+    //   };
+    //   break;
+  } else if (playerScore > computerScore) {
     console.log("Congratulations! You're the winner!!!");
   } else {
     console.log("Aw man, you lost... better luck next time.");
   };
+
   console.log("\n");
 };
 
 let buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
-    playerChoice = button.textContent;
-    playRound(playerChoice);
+    playerChoice = button.textContent.toLowerCase();
+    playRound();
+    round++;
+
+    if (playerScore == 5 || computerScore == 5) {
+      declareWinner();
+    }
   });
 });
 
