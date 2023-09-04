@@ -1,20 +1,17 @@
-// Rock paper scissors game played through the console
-let choices = ["rock", "paper", "scissors"],
-    input,
-    playerChoice,
-    computerChoice,
-    randomNum,
-    welcomeMsg;
-
-welcomeMsg = `Welcome to Rock Paper Scissors!
-The game will last 5 rounds, there will be extra 
-rounds if the game were to end in a tie. Input your
-choice when prompted and see if you beat the computer
-Good luck!`;
-
-let playerScore = 0,
-    computerScore = 0
-    round = 1;
+// Rock paper scissors game
+const mainText = document.querySelector("h1");
+const header = document.querySelector('.header');
+const displayScore = document.createElement('h2');
+let buttons = document.querySelectorAll('button');
+let revealText = false;
+let playerScore = 0;
+let computerScore = 0;
+let round = 1;
+let choices = ["rock", "paper", "scissors"];
+let input;
+let playerChoice;
+let computerChoice;
+let randomNum;
 
 // Validate the user's input
 function validateInput(input) {
@@ -36,13 +33,15 @@ function getComputerChoice() {
 
 // Play a round and display results
 function playRound() {
-  if (round == 1) {
-    console.log(welcomeMsg);
-    console.log("\n");
+  if (round == 2) {
+    header.appendChild(displayScore);
   };
+  
+  mainText.textContent = `Round ${round.toString()}`;
+  displayScore.textContent = `Score - Player: ${playerScore}, Computer: ${computerScore}`;
 
-  console.log(`Round ${round.toString()}`);
-  console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`);
+
+  // console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`);
 
   computerChoice = getComputerChoice().toLowerCase();
 
@@ -78,10 +77,10 @@ function declareWinner() {
   console.log("Thanks for playing :)");
 };
 
-let buttons = document.querySelectorAll('button');
+
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
-    playerChoice = button.textContent.toLowerCase();
+    playerChoice = button.querySelector("img").alt.toLowerCase();
     playRound();
     round++;
 
