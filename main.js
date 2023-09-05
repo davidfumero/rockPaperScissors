@@ -1,4 +1,5 @@
 // Play a game of rock paper scissors vs the computer
+const header = document.querySelector('.header');
 const mainText = document.querySelector('h1');
 const roundInfo = document.querySelector('.roundInfo');
 const roundChoices = document.querySelector('#choices');
@@ -38,7 +39,7 @@ function playRound() {
   };
 
   if (revealText) {
-    roundInfo.appendChild(displayScore);
+    header.appendChild(displayScore);
     roundInfo.appendChild(results);
   };
   
