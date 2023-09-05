@@ -1,7 +1,10 @@
 // Rock paper scissors game
-const mainText = document.querySelector("h1");
+const mainText = document.querySelector('h1');
 const header = document.querySelector('.header');
-const displayScore = document.createElement('h2');
+const roundInfo = document.querySelector('.roundInfo');
+const roundChoices = document.querySelector('#choices');
+const displayScore = document.createElement('h3');
+const displayChoices = document.createElement('h3');
 let buttons = document.querySelectorAll('button');
 let revealText = false;
 let playerScore = 0;
@@ -33,19 +36,7 @@ function getComputerChoice() {
 
 // Play a round and display results
 function playRound() {
-  if (round == 2) {
-    header.appendChild(displayScore);
-  };
-  
-  mainText.textContent = `Round ${round.toString()}`;
-  displayScore.textContent = `Score - Player: ${playerScore}, Computer: ${computerScore}`;
-
-
-  // console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`);
-
   computerChoice = getComputerChoice().toLowerCase();
-
-  console.log(`Player: ${playerChoice} | Computer: ${computerChoice}`);
   
   // Compare choices and adjust the score accordingly
   if (playerChoice == computerChoice) {
@@ -60,6 +51,17 @@ function playRound() {
     console.log("You lost the round!");
   };
   console.log("\n");
+
+  if (revealText) {
+    roundInfo.appendChild(displayScore);
+    // roundInfo.appendChild(displayChoices);
+  };
+  
+
+  mainText.textContent = `Round ${round.toString()}`;
+  displayScore.textContent = `Score - Player: ${playerScore}, Computer: ${computerScore}`;
+  roundChoices.textContent = `Player: ${playerChoice} | Computer: ${computerChoice}`;
+  
 };
 
 function declareWinner() {
@@ -80,6 +82,7 @@ function declareWinner() {
 
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
+    revealText = true;
     playerChoice = button.querySelector("img").alt.toLowerCase();
     playRound();
     round++;
