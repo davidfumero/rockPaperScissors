@@ -1,7 +1,15 @@
+html {
+  height: 100%;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 24px;
+  font-family: "roboto", Helvetica, sans-serif;
+  margin: 0px;
+  height: 100%;
 }
 
 .header {
@@ -12,8 +20,9 @@ body {
 
 .buttons {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  gap: 32px;
 }
 
 .roundInfo {
