@@ -4,7 +4,7 @@ const header = document.querySelector('.header');
 const roundInfo = document.querySelector('.roundInfo');
 const roundChoices = document.querySelector('#choices');
 const displayScore = document.createElement('h3');
-const displayChoices = document.createElement('h3');
+const results = document.createElement('h3');
 let buttons = document.querySelectorAll('button');
 let revealText = false;
 let playerScore = 0;
@@ -37,42 +37,41 @@ function getComputerChoice() {
 // Play a round and display results
 function playRound() {
   computerChoice = getComputerChoice().toLowerCase();
-  
+
   // Compare choices and adjust the score accordingly
   if (playerChoice == computerChoice) {
-    console.log("It's a tie!");
+    results.textContent = "It's a tie!";
   } else if ((playerChoice == "rock" && computerChoice == "scissors") || 
              (playerChoice == "paper" && computerChoice == "rock") ||
              (playerChoice == "scissors" && computerChoice == "paper")) {
     playerScore++;
-    console.log("You won the round!");
+    results.textContent = "You won the round!";
   } else {
     computerScore++;
-    console.log("You lost the round!");
+    results.textContent = "You lost the round!";
   };
   console.log("\n");
 
   if (revealText) {
     roundInfo.appendChild(displayScore);
-    // roundInfo.appendChild(displayChoices);
+    roundInfo.appendChild(results);
   };
   
-
+  // Display game info
   mainText.textContent = `Round ${round.toString()}`;
-  displayScore.textContent = `Score - Player: ${playerScore}, Computer: ${computerScore}`;
-  roundChoices.textContent = `Player: ${playerChoice} | Computer: ${computerChoice}`;
-  
+  displayScore.textContent = `Scores - Player: ${playerScore}, Computer: ${computerScore}`;
+  roundChoices.textContent = `Choices - Player: ${playerChoice} | Computer: ${computerChoice}`;
 };
 
 function declareWinner() {
   // Display final scores and declare a winner
-  console.log("Final scores:");
-  console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
+  displayScore.textContent = `Final scores: Player: ${playerScore}, Computer: ${computerScore}`;
+  // console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
 
   if (playerScore > computerScore) {
-    console.log("Congratulations! You're the winner!!!");
+    results.textContent = "Congratulations! You're the winner!!!";
   } else {
-    console.log("Aw man, you lost... better luck next time.");
+    results.textContent = "Aw man, you lost... better luck next time.";
   };
 
   console.log("\n");
