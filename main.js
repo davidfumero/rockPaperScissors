@@ -14,6 +14,7 @@ let choices = ["rock", "paper", "scissors"];
 let playerChoice;
 let computerChoice;
 let randomNum;
+let gameOn = true;
 
 // Calculate computer's choice
 function getComputerChoice() {
@@ -44,9 +45,9 @@ function playRound() {
   };
   
   // Display game info
-  mainText.textContent = `Round ${round.toString()}`;
-  displayScore.textContent = `Scores - Player: ${playerScore}, Computer: ${computerScore}`;
-  roundChoices.textContent = `Choices - Player: ${playerChoice} | Computer: ${computerChoice}`;
+    mainText.textContent = `Round ${round.toString()}`;
+    displayScore.textContent = `Scores - Player: ${playerScore}, Computer: ${computerScore}`;
+    roundChoices.textContent = `Choices - Player: ${playerChoice} | Computer: ${computerChoice}`;
 };
 
 // Display final scores and declare a winner
@@ -58,16 +59,20 @@ function declareWinner() {
   } else {
     results.textContent = "Aw man, you lost... better luck next time.";
   };
+
+  gameOn = false;
 };
 
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
-    revealText = true;
-    playerChoice = button.querySelector("img").alt.toLowerCase();
-    playRound();
-    round++;
+    if (gameOn) {
+      revealText = true;
+      playerChoice = button.querySelector("img").alt.toLowerCase();
+      playRound();
+      round++;
+    };
 
-    if (playerScore == 3 || computerScore == 3) {
+    if (playerScore == 5 || computerScore == 5) {
       declareWinner();
     };
   });
