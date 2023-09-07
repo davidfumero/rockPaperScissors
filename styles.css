@@ -16,7 +16,9 @@ body {
 .header {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
   padding: 16px;
   background-color: #606c38;
 }
@@ -25,6 +27,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 200px;
   gap: 32px;
   padding: 16px;
   background-color: #fefae0;
@@ -35,6 +38,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   padding: 16px;
   background-color: #606c38;
 }
