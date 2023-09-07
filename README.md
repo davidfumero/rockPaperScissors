@@ -1,7 +1,3 @@
 # rockPaperScissors
-Play a game of Rock Paper Scissors vs a computer. Game lasts five rounds and has a tiebreaker
-feature to prevent ending in a tie.
-
-Built using HTML and JavaScript.
-
-Game currently runs on the console.
+Play a game of Rock Paper Scissors vs a computer. Game ends after a player reaches 5 wins. 
+Built using HTML, CSS, and JavaScript.
